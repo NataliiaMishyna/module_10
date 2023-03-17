@@ -1,0 +1,40 @@
+buildscript {
+    dependencies {
+        classpath 'com.h2database:h2:2.1.214'
+    }
+}
+
+plugins {
+    id 'java'
+    id "org.flywaydb.flyway" version "9.8.1"
+}
+
+flyway {
+    url = 'jdbc:h2:file:./resources/sql'
+    user = 'sa'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.1.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'com.h2database:h2:2.1.214'
+    implementation group: 'org.flywaydb', name: 'flyway-core', version: '9.15.0'
+// https://mvnrepository.com/artifact/org.projectlombok/lombok
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+
+// https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
+    implementation 'org.hibernate.orm:hibernate-core:6.1.0.Final'
+}
+
+test {
+    useJUnitPlatform()
+}
